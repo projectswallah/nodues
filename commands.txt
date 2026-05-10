@@ -1,0 +1,173 @@
+# ================================
+# 1. Build Spring Boot JAR
+# ================================
+
+mvn clean package
+
+
+# ================================
+# 2. Build Docker Image
+# ================================
+
+docker build -t no-dues-backend:1.0 .
+
+
+# ================================
+# 3. Check Docker Images
+# ================================
+
+docker images
+
+
+# ================================
+# 4. Run Docker Container
+# ================================
+
+docker run -d --name no-dues-backend-container -p 9090:8080 no-dues-backend:1.0
+
+
+# ================================
+# 5. Check Running Containers
+# ================================
+
+docker ps
+
+
+# ================================
+# 6. Show Container Logs
+# ================================
+
+docker logs no-dues-backend-container
+
+
+# ================================
+# 7. Live Logs
+# ================================
+
+docker logs -f no-dues-backend-container
+
+
+# ================================
+# 8. Live Logs With Timestamp
+# ================================
+
+docker logs -f -t no-dues-backend-container
+
+
+# ================================
+# 9. Last 50 Logs
+# ================================
+
+docker logs --tail 50 no-dues-backend-container
+
+
+# ================================
+# 10. Stop Container
+# ================================
+
+docker stop no-dues-backend-container
+
+
+# ================================
+# 11. Start Existing Container Again
+# ================================
+
+docker start no-dues-backend-container
+
+
+# ================================
+# 12. Restart Container
+# ================================
+
+docker restart no-dues-backend-container
+
+
+# ================================
+# 13. Remove Container
+# ================================
+
+docker rm no-dues-backend-container
+
+
+# ================================
+# 14. Force Remove Running Container
+# ================================
+
+docker rm -f no-dues-backend-container
+
+
+# ================================
+# 15. Remove Docker Image
+# ================================
+
+docker rmi no-dues-backend:1.0
+
+
+# ================================
+# 16. Open Container Shell
+# ================================
+
+docker exec -it no-dues-backend-container bash
+
+
+# ================================
+# 17. Show Container Details
+# ================================
+
+docker inspect no-dues-backend-container
+
+
+# ================================
+# 18. Show Resource Usage
+# ================================
+
+docker stats
+
+
+# ================================
+# 19. Tag Docker Image for Nexus
+# ================================
+
+docker tag no-dues-backend:1.0 localhost:8082/no-dues-backend:1.0
+
+
+# ================================
+# 20. Login to Nexus Docker Repo
+# ================================
+
+docker login localhost:8082
+
+
+# ================================
+# 21. Push Image to Nexus
+# ================================
+
+docker push localhost:8082/no-dues-backend:1.0
+
+
+# ================================
+# 22. Pull Image From Nexus
+# ================================
+
+docker pull localhost:8082/no-dues-backend:1.0
+
+
+# ================================
+# 23. Run Image Pulled From Nexus
+# ================================
+
+docker run -d --name no-dues-prod -p 9090:8080 localhost:8082/no-dues-backend:1.0
+
+
+# ================================
+# 24. Remove All Stopped Containers
+# ================================
+
+docker container prune
+
+
+# ================================
+# 25. Remove Unused Images
+# ================================
+
+docker image prune -a
