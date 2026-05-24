@@ -10,7 +10,7 @@ public class NoDuesBackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NoDuesBackendApplication.class, args);
-        log.info("Application started...");
+        log.info("--======== No-Dues Application started =======--");
     }
 
 }
