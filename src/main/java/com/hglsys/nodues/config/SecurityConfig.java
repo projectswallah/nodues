@@ -32,7 +32,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-
+                        .requestMatchers("/api/actuator/health").permitAll()
                         .requestMatchers("/api/principal/**")
                         .hasRole(RoleEnum.PRINCIPAL.name())
 
