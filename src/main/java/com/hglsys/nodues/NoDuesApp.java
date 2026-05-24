@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j                          // Logger
 @SpringBootApplication
-public class NoDuesBackendApplication {
+public class NoDuesApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(NoDuesBackendApplication.class, args);
+        SpringApplication.run(NoDuesApp.class, args);
         log.info("--======== No-Dues Application started =======--");
     }
 
