@@ -10,13 +10,13 @@ import java.util.Map;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/actuator")
 public class HealthCheck {
 
     @GetMapping("/health")
     public ResponseEntity<?> healthCheck(){
         Map<String, Object> resp= new HashMap<>();
-        resp.put("health","Health good");
+        resp.put("status","UP");
         return ResponseEntity.ok(resp);
     }
 }

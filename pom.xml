@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.hglsys</groupId>
     <artifactId>no-dues-backend</artifactId>
-<!--    <version>0.0.1-SNAPSHOT</version>-->
+    <!--    <version>0.0.1-SNAPSHOT</version>-->
     <version>0.0.1</version>
     <name/>
     <description/>
@@ -34,8 +34,7 @@
     <dependencies>
 
 
-
-<!--        Starter -->
+        <!--        Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -58,18 +57,17 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
         <!-- PostgreSQL -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-
 
         <!-- Validation -->
         <dependency>
@@ -98,8 +96,11 @@
             <scope>runtime</scope>
         </dependency>
 
-
-
+        <!-- Actuator for checking health of new deployed jar on test container-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
 
         <dependency>
