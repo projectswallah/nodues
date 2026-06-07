@@ -1,9 +1,11 @@
 package com.hglsys.nodues.entities;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "mst_courses")
+@Data
 public class Course extends BaseEntity {
 
     @Id
@@ -16,7 +18,9 @@ public class Course extends BaseEntity {
     @Column(nullable = false)
     private String courseName;
 
+    private String description;
+
     private Integer durationYears;
 
-    private Boolean isActive = true;
+    private Boolean active = true;
 }
