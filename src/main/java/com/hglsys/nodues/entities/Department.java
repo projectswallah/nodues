@@ -26,5 +26,5 @@ public class Department extends BaseEntity {
     private String description;
 
     @Column(nullable = false)
-    private Boolean isActive = true;
+    private Boolean active = true;
 }

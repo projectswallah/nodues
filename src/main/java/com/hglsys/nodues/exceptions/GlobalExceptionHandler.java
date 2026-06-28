@@ -1,5 +1,6 @@
 package com.hglsys.nodues.exceptions;
 
+import com.hglsys.nodues.Dto.ApiResponse;
 import com.hglsys.nodues.Dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +33,29 @@ public class GlobalExceptionHandler {
                 new ErrorResponse(404, ex.getMessage());
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequest(
+            BadRequestException ex) {
+
+        ErrorResponse error =
+                new ErrorResponse(400, ex.getMessage());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceAlreadyExistsException.class)
+    public ResponseEntity<ApiResponse> handleAlreadyExists(
+            ResourceAlreadyExistsException ex) {
+
+        ApiResponse response = new ApiResponse(
+                409,
+                ex.getMessage(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(response);
     }
 }

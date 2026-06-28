@@ -1,13 +1,13 @@
 package com.hglsys.nodues.service.impl;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.hglsys.nodues.Dto.ApiResponse;
-import com.hglsys.nodues.Dto.ErrorResponse;
 import com.hglsys.nodues.Dto.PagedResponse;
 import com.hglsys.nodues.Dto.courseDto.CourseRequest;
 import com.hglsys.nodues.Dto.courseDto.CourseResponse;
 import com.hglsys.nodues.Dto.courseDto.CourseUpdateRequest;
 import com.hglsys.nodues.entities.Course;
+import com.hglsys.nodues.exceptions.BadRequestException;
+import com.hglsys.nodues.exceptions.ResourceAlreadyExistsException;
 import com.hglsys.nodues.exceptions.ResourceNotFoundException;
 import com.hglsys.nodues.mapper.CourseMapper;
 import com.hglsys.nodues.repo.CourseRepo;
@@ -18,9 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +30,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public ApiResponse create(CourseRequest request) {
 
+        if (courseRepo.existsByCourseCode(request.getCourseCode())) {
+            throw new ResourceAlreadyExistsException(
+                    "Course already exists with code: " + request.getCourseCode()
+            );
+        }
         Course course = new Course();
+
         BeanUtils.copyProperties(request,course);
         Course savedCourse = courseRepo.save(course);
 
